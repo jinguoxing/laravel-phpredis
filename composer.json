@@ -1,5 +1,5 @@
 {
-    "name": "jinguoxing/laravel-phpredis",
+    "name": "Kingnet/laravel-phpredis",
     "version": "1.0.0",
     "description": "Use phpredis as the redis connection in Laravel",
     "keywords": [ "laravel", "redis", "phpredis" ],
@@ -11,7 +11,7 @@
         }
     ],
     "require": {
-        
+
 
     },
     "autoload": {
