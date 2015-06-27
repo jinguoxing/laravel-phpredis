@@ -22,6 +22,5 @@
         "post-install-cmd": [
             "php artisan vendor:publish  --provider=Kingnet\\PhpRedis\\ServiceProvider"
         ]
-    },
-    "minimum-stability" : "dev",
+    }
 }
