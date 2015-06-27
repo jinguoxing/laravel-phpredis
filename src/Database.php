@@ -1,6 +1,6 @@
 <?php 
 
-namespace Kingnet\PhpRedis;
+namespace KingNet\PhpRedis;
 
 use Closure;
 use Illuminate\Support\Arr;
@@ -26,75 +26,11 @@ class Database implements DatabaseContract
      */
     public function __construct(array $servers = [])
     {
-        $cluster = Arr::pull($servers, 'cluster');
 
         $options = (array) Arr::pull($servers, 'options');
 
-        if ($cluster) {
-            $this->clients = $this->createAggregateClient($servers, $options);
-        } else {
-            $this->clients = $this->createSingleClients($servers, $options);
-        }
-    }
-
-    /**
-     * Create a new aggregate client supporting sharding.
-     *
-     * @param  array  $servers
-     * @param  array  $options
-     * @return array
-     */
-    protected function createAggregateClient(array $servers, array $options = [])
-    {
-
-         $options = array(
-            'lazy_connect' => true,
-            'pconnect'     => false,
-            'timeout'      => 0,
-        );
-        $cluster = array();
-        foreach ($servers as $key => $server) {
-            if ($key === 'cluster') continue;
-            $host    = empty($server['default']['host'])    ? '127.0.0.1' : $server['host'];
-            $port    = empty($server['port'])    ? '6379'      : $server['port'];
-            $serializer = Redis::SERIALIZER_NONE;
-            if (!empty($server['serializer'])) {
-                if ($server['serializer'] === 'none') {
-                    $serializer = Redis::SERIALIZER_PHP;
-                } else if ($server['serializer'] === 'igbinary') {
-                    if (defined('Redis::SERIALIZER_IGBINARY')) {
-                        $serializer = Redis::SERIALIZER_IGBINARY;
-                    } else {
-                        $serializer = Redis::SERIALIZER_PHP;
-                    }
-                }
-            }
-            $cluster[$host.':'.$port] = array(
-                'prefix'     => empty($server['prefix'])   ? '' : $server['prefix'],
-                'database'   => empty($server['database']) ? 0  : $server['database'],
-                'serializer' => $serializer,
-            );
-            if (isset($server['persistent'])) {
-                $options['pconnect'] = $options['pconnect'] && $server['persistent'];
-            } else {
-                $options['pconnect'] = false;
-            }
-            if (!empty($server['timeout'])) {
-                $options['timeout'] = max($options['timeout'], $server['timeout']);
-            }
-        }
-        $ra = new RedisArray(array_keys($cluster), $options);
-        foreach ($cluster as $host => $options) {
-            $redis = $ra->_instance($host);
-            $redis->setOption(Redis::OPT_PREFIX, $options['prefix']);
-            $redis->setOption(Redis::OPT_SERIALIZER, $options['serializer']);
-            $redis->select($options['database']);
-        }
-        return array('default' => $ra);
-
-
-
-
+        $this->clients = $this->createSingleClients($servers, $options);
+    
     }
 
     /**
@@ -104,13 +40,12 @@ class Database implements DatabaseContract
      * @param  array  $options
      * @return array
      */
-    protected function createSingleClients(array $servers, array $options = [])
+    protected function createSingleClients(array $servers, array $options =[])
     {
         $clients = [];
 
         foreach ($servers as $key => $server) {
-            if('cluster'===$key) continue;
-
+           
             $phpredis = new Redis();
             $host    = empty($server['host']) ? '127.0.0.1' : $server['host'];
             $port    = empty($server['port'])?'6379':$server['port']; 

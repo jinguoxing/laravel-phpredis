@@ -10,10 +10,12 @@
             "email": "494728736@qq.com"
         }
     ],
+    
+    "minimum-stability": "stable",
     "require": {
+         "php": ">=5.4.0"
+    }
 
-
-    },
     "autoload": {
         "psr-4": {
             "KingNet\\PhpRedis\\": "src/"
@@ -21,7 +23,7 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "php artisan vendor:publish  --provider=Kingnet\\PhpRedis\\ServiceProvider"
+            "php artisan vendor:publish  --provider=KingNet\\PhpRedis\\PhpRedisServiceProvider"
         ]
     }
 }

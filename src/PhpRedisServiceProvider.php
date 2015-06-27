@@ -1,6 +1,6 @@
 <?php
 
-namespace Kingnet\PhpRedis;
+namespace KingNet\PhpRedis;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -25,7 +25,7 @@ class PhpRedisServiceProvider extends ServiceProvider {
      * @return void
      */
 	public function register() {
-		$this->app['redis'] = $this->app->share(function($app) {
+		$this->app['phpredis'] = $this->app->share(function($app) {
 			return new Database($app['config']['phpredis.redis']);
 		});
 	}
@@ -37,6 +37,6 @@ class PhpRedisServiceProvider extends ServiceProvider {
      * @return array
      */
 	public function provides() {
-		return array('redis');
+		return array('phpredis');
 	}
 }

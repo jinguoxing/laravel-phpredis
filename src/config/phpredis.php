@@ -14,8 +14,6 @@ return [
     
 	'redis' => [
 
-    'cluster' => false, // if true a RedisArray will be created
-
 
     'default' => [
         'host'       => '127.0.0.1', // default: '127.0.0.1'
