@@ -16,7 +16,7 @@ class PhpRedisServiceProvider extends ServiceProvider {
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/config.php' => config_path('wechat.php'),
+            __DIR__ . '/config.php' => config_path('phpredis.php'),
         ], 'config');
     }
 
