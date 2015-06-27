@@ -1,0 +1,21 @@
+{
+    "name": "jinguoxing/laravel-phpredis",
+    "version": "1.0.0",
+    "description": "Use phpredis as the redis connection in Laravel",
+    "keywords": [ "laravel", "redis", "phpredis" ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "jinguoxing",
+            "email": "494728736@qq.com"
+        }
+    ],
+    "require": {
+
+    },
+    "autoload": {
+        "psr-4": {
+            "Kingnet\\PhpRedis": "src/"
+        }
+    }
+}
