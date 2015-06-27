@@ -9,7 +9,7 @@ use \Redis;
 use \RedisArray;
 
 
-class Database implements DatabaseContract
+class Database implements DatabaseContracts
 {
     /**
      * The host address of the database.
@@ -58,13 +58,13 @@ class Database implements DatabaseContract
                 $phpredis->connection($host,$port,$timeout);
             }
 
-            if (isset($server['prefix']) && !empty($server['prefix']))
+            if (!empty($server['prefix']))
               {
                 $phpredis->setOption(Redis::OPT_PREFIX,$server['prefix']);
               }
 
             //   redis的数据库默认是从0 - 16 
-            if (isset($server['database'] && (int)$server['database']>=0 && (int)$server['database']<=16)
+            if ((int)$server['database']>=0 && (int)$server['database']<=16)
             {
                 $phpredis->select($server['database']);
             }
