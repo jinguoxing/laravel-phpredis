@@ -5,8 +5,7 @@ namespace KingNet\PhpRedis;
 use Closure;
 use Illuminate\Support\Arr;
 use Illuminate\Contracts\Redis\Database as DatabaseContracts;
-use \Redis;
-use \RedisArray;
+use \Redis as Redis;
 
 
 class Database implements DatabaseContracts
@@ -90,7 +89,7 @@ class Database implements DatabaseContracts
                 $phpredis->setOption(Redis::OPT_SERIALIZER, $serializer);
             }
 
-            $clients['$key'] = $phpredis;
+            $clients[$key] = $phpredis;
 
         }
 
