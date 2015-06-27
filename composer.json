@@ -15,7 +15,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Kingnet\\PhpRedis": "src/"
+            "Kingnet\\PhpRedis\\": "src/"
         }
-    }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "php artisan vendor:publish  --provider=Kingnet\\PhpRedis\\ServiceProvider"
+        ]
+    },
+    "minimum-stability" : "dev",
 }
