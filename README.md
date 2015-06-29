@@ -6,7 +6,7 @@ The phpredis extension provides an API for communicating with the Redis key-valu
 
 Requirements
 ======
-PHP 5.4+
+PHP 5.4+<br/>
 Laravel 5.x
 
 Installation
@@ -70,5 +70,5 @@ This is free software distributed under the terms of the MIT license.
 Contribution guidelines
 ==============
 
-Please report any issue you find in the issues page.
+Please report any issue you find in the issues page.<br/>
 Pull requests are welcome.
