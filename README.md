@@ -14,8 +14,23 @@ Installation
 ```php	    
 	    
 "require": {
-    "jinguoxing/laravel-phpredis": "1.*"
+    "kingnet/laravel-phpredis":"dev-master"
 }
 
 ```
 
+Add the PhpRedisServiceProvider to config/app.php (comment out built-in RedisServiceProvider):
+
+```php
+// Illuminate\Redis\RedisServiceProvider::class,
+//phpredis provider
+    KingNet\PhpRedis\PhpRedisServiceProvider::class,
+
+```
+
+The default Facade alias conflicts with the Redis class provided by PhpRedis. To fix this, rename the alias in config/app.php:
+
+```php
+'PhpRedis'  => KingNet\PhpRedis\Facede::class,
+```
+Finally run composer update to update and install everything.
