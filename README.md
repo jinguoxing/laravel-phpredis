@@ -14,7 +14,7 @@ Installation
 ```php	    
 	    
 "require": {
-    "vetruvet/laravel-phpredis": "1.*"
+    "jinguoxing/laravel-phpredis": "1.*"
 }
 
 ```
