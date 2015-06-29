@@ -34,3 +34,41 @@ The default Facade alias conflicts with the Redis class provided by PhpRedis. To
 'PhpRedis'  => KingNet\PhpRedis\Facede::class,
 ```
 Finally run composer update to update and install everything.
+
+
+Configuration
+===============
+Just use php artisan vendor:publish and a phpredis.php file will be created in your config directory.
+
+Usage
+================
+
+```php
+use PhpRedis;
+
+
+class PhpredisController extends Controller
+{
+  
+    public function test()
+    {
+
+        PhpRedis::set('myname','kingnet');
+        dd(PhpRedis::get('myname'));
+
+    }
+
+    
+}
+```
+
+
+License
+=============
+This is free software distributed under the terms of the MIT license.
+
+Contribution guidelines
+==============
+
+Please report any issue you find in the issues page.
+Pull requests are welcome.
