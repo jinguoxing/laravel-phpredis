@@ -11,9 +11,11 @@ Laravel 5.x
 
 Installation
 ======
-	    
+```php	    
 	    
 "require": {
     "vetruvet/laravel-phpredis": "1.*"
 }
+
+```
 
